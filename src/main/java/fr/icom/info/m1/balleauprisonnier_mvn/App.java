@@ -1,10 +1,10 @@
 package fr.icom.info.m1.balleauprisonnier_mvn;
 
 
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.application.Application; /*classe abstraite permettant de créer une application, une fenetre*/
+import javafx.scene.Group; /*Permet de créer des conteneur*/
+import javafx.scene.Scene; /* fenetre qui engloge les éléments */
+import javafx.stage.Stage; /* fenetre qui englobe la scene */
 
 /**
  * Classe principale de l'application 
@@ -32,8 +32,15 @@ public class App extends Application
         // On cree le terrain de jeu et on l'ajoute a la racine de la scene
         Field gameField = new Field(scene, 600, 600 );
         root.getChildren().add( gameField );
-		root.getChildren().add(gameField.getJoueurs()[0].sprite);
-		root.getChildren().add(gameField.getJoueurs()[1].sprite);
+        
+        for (int i = 0; i < 3; i++) 
+	    {root.getChildren().add(gameField.getEquipe1()[i].sprite);
+	    } // Afficher les images de joueurs
+        
+        for (int i = 0; i < 3; i++) 
+	    {root.getChildren().add(gameField.getEquipe2()[i].sprite);
+	    }
+		
 
         // On ajoute la scene a la fenetre et on affiche
         stage.setScene( scene );

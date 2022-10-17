@@ -18,7 +18,10 @@ import javafx.scene.paint.Color;
 public class Field extends Canvas {
 	
 	/** Joueurs */
-	Player [] joueurs = new Player[2];
+	//Player [] joueurs = new Player[2]; /*Nombre de joueurs dans la partie*/
+
+	Player [] equipe1 = new Player[3]; /*Nombre de joueurs dans la partie*/
+	Player [] equipe2 = new Player[3]; /*Nombre de joueurs dans la partie*/
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
 	/** Tableau traçant les evenements */
@@ -42,17 +45,41 @@ public class Field extends Canvas {
 		width = w;
 		height = h;
 		
+		
 		/** permet de capturer le focus et donc les evenements clavier et souris */
 		this.setFocusTraversable(true);
 		
         gc = this.getGraphicsContext2D();
         
         /** On initialise le terrain de jeu */
-    	joueurs[0] = new Player(gc, colorMap[0], w/2, h-50, "bottom");
-    	joueurs[0].display();
+        
+        	// Initialisation de l'équipe1
+        // Joueurs contrôlés par la personne
+        for (int i = 0,n=4; i < 2; i++, n--) 
+	    {
+        	equipe1[i] = new Player(gc, colorMap[i], w/n, h-50, "bottom");
+        	equipe1[i].display();
+	    }
+        
+        // Joueurs contrôlés par le pc
+        	equipe1[2] = new Player(gc, colorMap[2], w/5, h-50, "bottom");
+        	equipe1[2].display();
 
-    	joueurs[1] = new Player(gc, colorMap[1], w/2, 20, "top");
-    	joueurs[1].display();
+
+        	// Initialisation de l'équipe2
+        
+        for (int i = 0,n=4; i < 2; i++, n--) 
+	    {
+        	equipe2[i] = new Player(gc, colorMap[i], w/n, 20, "top");
+        	equipe2[i].display();
+        	
+	    }
+        
+        
+        // Joueurs contrôlés par le pc
+    	equipe2[2] = new Player(gc, colorMap[2], w/5, 20, "top");
+    	equipe2[2].display();
+    	
 
 
 	    /** 
@@ -104,53 +131,78 @@ public class Field extends Canvas {
 	            gc.fillRect(0, 0, width, height);
 	        	
 	            // Deplacement et affichage des joueurs
-	        	for (int i = 0; i < joueurs.length; i++) 
+	            
+	            // Pour les joueurs contrôlés par la personne
+	        	for (int i = 0; i < 2; i++) 
 	    	    {
-	        		if (i==0 && input.contains("LEFT"))
+	        		if (input.contains("LEFT"))
 	        		{
-	        			joueurs[i].moveLeft();
+	        			equipe1[i].moveLeft();
 	        		} 
-	        		if (i==0 && input.contains("RIGHT")) 
+	        		if (input.contains("RIGHT")) 
 	        		{
-	        			joueurs[i].moveRight();	        			
+	        			equipe1[i].moveRight();	        			
 	        		}
-	        		if (i==0 && input.contains("UP"))
+					if (input.contains("ENTER")){
+	        			equipe1[i].shoot();
+					}
+	        		if (input.contains("UP"))
 	        		{
-	        			joueurs[i].turnLeft();
+	        			equipe1[i].turnLeft();
 	        		} 
-	        		if (i==0 && input.contains("DOWN")) 
+	        		if (input.contains("DOWN")) 
 	        		{
-	        			joueurs[i].turnRight();	        			
+	        			equipe1[i].turnRight();	        			
 	        		}
-	        		if (i==1 && input.contains("A"))
+	        		
+	        		equipe1[i].display();
+	    	    }
+	        	
+	        	// Pour les joueurs contrôlés par le pc
+
+	        	equipe1[2].moveLeft();
+	        	equipe1[2].display();
+	        		
+	        	// Pour les joueurs contrôlés par la personne
+				for (int i = 0; i < 2; i++) 
+	    	    {
+	
+	        		if (input.contains("Q"))
 	        		{
-	        			joueurs[i].moveLeft();
+	        			equipe2[i].moveLeft();
 	        		} 
-	        		if (i==1 && input.contains("D")) 
+	        		if (input.contains("D")) 
 	        		{
-	        			joueurs[i].moveRight();	        			
+	        			equipe2[i].moveRight();	        			
 	        		}
-	        		if (i==1 && input.contains("W"))
+	        		if (input.contains("Z"))
 	        		{
-	        			joueurs[i].turnLeft();
+	        			equipe2[i].turnLeft();
 	        		} 
-	        		if (i==1 && input.contains("S")) 
+	        		if (input.contains("S")) 
 	        		{
-	        			joueurs[i].turnRight();	        			
+	        			equipe2[i].turnRight();	        			
 	        		}
 	        		if (input.contains("SPACE")){
-	        			joueurs[i].shoot();
+	        			equipe2[i].shoot();
 					}
 
 	        		
-	        		joueurs[i].display();
+	        		equipe2[i].display();
 	    	    }
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement 
 	     
 	}
 
-	public Player[] getJoueurs() {
-		return joueurs;
+	public Player[] getEquipe1() {
+		return equipe1;
+
 	}
+	
+	public Player[] getEquipe2() {
+		return equipe2;
+
+	}
+	
 }
