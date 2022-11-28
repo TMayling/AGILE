@@ -133,7 +133,8 @@ public class Field extends Canvas {
 	            // Deplacement et affichage des joueurs
 	            
 	            // Pour les joueurs contrôlés par la personne
-	        	for (int i = 0; i < 2; i++) 
+	        	//for (int i = 0; i < 2; i++) 
+	            for (int i=2;i<3;i++) //pour le moment un seul personnage est contrôlé par le joueur
 	    	    {
 	        		if (input.contains("LEFT"))
 	        		{
@@ -159,12 +160,13 @@ public class Field extends Canvas {
 	    	    }
 	        	
 	        	// Pour les joueurs contrôlés par le pc
-
+/*
 	        	equipe1[2].moveLeft();
 	        	equipe1[2].display();
-	        		
+	        		*/
 	        	// Pour les joueurs contrôlés par la personne
-				for (int i = 0; i < 2; i++) 
+				//for (int i = 0; i < 2; i++)
+	        	for (int i=2;i<3;i++) //pour le moment un seul personnage est contrôlé par le joueur
 	    	    {
 	
 	        		if (input.contains("Q"))
