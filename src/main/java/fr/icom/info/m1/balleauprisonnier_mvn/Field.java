@@ -20,8 +20,8 @@ public class Field extends Canvas {
 	/** Joueurs */
 	//Player [] joueurs = new Player[2]; /*Nombre de joueurs dans la partie*/
 
-	Player [] equipe1 = new Player[3]; /*Nombre de joueurs dans la partie*/
-	Player [] equipe2 = new Player[3]; /*Nombre de joueurs dans la partie*/
+	Player [] equipe1 = new Player[3]; /*Nombre de joueurs d'une équipe dans la partie*/
+	Player [] equipe2 = new Player[3]; /*Nombre de joueurs d'une équipe dans la partie*/
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
 	/** Tableau traçant les evenements */
@@ -54,20 +54,20 @@ public class Field extends Canvas {
         /** On initialise le terrain de jeu */
         
         	// Initialisation de l'équipe1
-        // Joueurs contrôlés par la personne
+        // Personnages contrôlés par le pc
         for (int i = 0,n=4; i < 2; i++, n--) 
 	    {
         	equipe1[i] = new Player(gc, colorMap[i], w/n, h-50, "bottom");
         	equipe1[i].display();
 	    }
         
-        // Joueurs contrôlés par le pc
+        // Personnage contrôlé par le joueur 1
         	equipe1[2] = new Player(gc, colorMap[2], w/5, h-50, "bottom");
         	equipe1[2].display();
 
 
         	// Initialisation de l'équipe2
-        
+        // Personnages contrôlés par le pc
         for (int i = 0,n=4; i < 2; i++, n--) 
 	    {
         	equipe2[i] = new Player(gc, colorMap[i], w/n, 20, "top");
@@ -76,7 +76,7 @@ public class Field extends Canvas {
 	    }
         
         
-        // Joueurs contrôlés par le pc
+        // Personnages contrôlés par le joueur 2
     	equipe2[2] = new Player(gc, colorMap[2], w/5, 20, "top");
     	equipe2[2].display();
     	
