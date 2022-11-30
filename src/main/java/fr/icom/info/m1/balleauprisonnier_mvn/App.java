@@ -1,6 +1,5 @@
 package fr.icom.info.m1.balleauprisonnier_mvn;
 
-
 import javafx.application.Application; /*classe abstraite permettant de créer une application, une fenetre*/
 import javafx.scene.Group; /*Permet de créer des conteneur*/
 import javafx.scene.Scene; /* fenetre qui engloge les éléments */

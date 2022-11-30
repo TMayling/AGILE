@@ -1,8 +1,6 @@
 package fr.icom.info.m1.balleauprisonnier_mvn;
 
-
 import java.util.ArrayList;
-
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -54,31 +52,20 @@ public class Field extends Canvas {
         /** On initialise le terrain de jeu */
         
         	// Initialisation de l'équipe1
-        // Personnages contrôlés par le pc
-        for (int i = 0,n=4; i < 2; i++, n--) 
+        // Boucle qui créer 3 personnages dans l'équipe 1
+        for (int i = 0,n=4; i < 3; i++, n--) 
 	    {
         	equipe1[i] = new Player(gc, colorMap[i], w/n, h-50, "bottom");
         	equipe1[i].display();
 	    }
-        
-        // Personnage contrôlé par le joueur 1
-        	equipe1[2] = new Player(gc, colorMap[2], w/5, h-50, "bottom");
-        	equipe1[2].display();
-
 
         	// Initialisation de l'équipe2
-        // Personnages contrôlés par le pc
-        for (int i = 0,n=4; i < 2; i++, n--) 
+        // Boucle qui créer 3 personnages dans l'équipe 2
+        for (int i = 0,n=4; i < 3; i++, n--) 
 	    {
         	equipe2[i] = new Player(gc, colorMap[i], w/n, 20, "top");
         	equipe2[i].display();
-        	
 	    }
-        
-        
-        // Personnages contrôlés par le joueur 2
-    	equipe2[2] = new Player(gc, colorMap[2], w/5, 20, "top");
-    	equipe2[2].display();
     	
 
 

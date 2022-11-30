@@ -1,15 +1,11 @@
-/**
- * pensez à réordonner le code
-*/
 package fr.icom.info.m1.balleauprisonnier_mvn;
 
-
+import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.transform.Rotate;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-import java.util.Random;
 
 /**
  * 
@@ -71,11 +67,7 @@ public class Player
 
 	    // Tous les joueurs ont une vitesse aleatoire entre 0.0 et 1.0
         Random randomGenerator = new Random();
-        step = randomGenerator.nextFloat();
-
-        // Vitesse / un pas fixe
-        //step = 1;
-	    
+        step = randomGenerator.nextFloat();	    
 	  }
 
 	  /**
