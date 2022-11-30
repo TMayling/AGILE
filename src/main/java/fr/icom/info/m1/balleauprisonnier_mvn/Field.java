@@ -13,11 +13,9 @@ import javafx.scene.paint.Color;
  * Classe gerant le terrain de jeu.
  * 
  */
-public class Field extends Canvas {
+public class Field extends Canvas{
 	
 	/** Joueurs */
-	//Player [] joueurs = new Player[2]; /*Nombre de joueurs dans la partie*/
-
 	Player [] equipe1 = new Player[3]; /*Nombre de joueurs d'une équipe dans la partie*/
 	Player [] equipe2 = new Player[3]; /*Nombre de joueurs d'une équipe dans la partie*/
 	/** Couleurs possibles */
@@ -37,12 +35,10 @@ public class Field extends Canvas {
      * @param w largeur du canvas
      * @param h hauteur du canvas
      */
-	public Field(Scene scene, int w, int h) 
-	{
+	public Field(Scene scene, int w, int h){
 		super(w, h); 
 		width = w;
 		height = h;
-		
 		
 		/** permet de capturer le focus et donc les evenements clavier et souris */
 		this.setFocusTraversable(true);
@@ -51,18 +47,16 @@ public class Field extends Canvas {
         
         /** On initialise le terrain de jeu */
         
-        	// Initialisation de l'équipe1
+        // Initialisation de l'équipe1
         // Boucle qui créer 3 personnages dans l'équipe 1
-        for (int i = 0,n=4; i < 3; i++, n--) 
-	    {
+        for (int i = 0,n=4; i < 3; i++, n--){
         	equipe1[i] = new Player(gc, colorMap[i], w/n, h-50, "bottom");
         	equipe1[i].display();
 	    }
 
-        	// Initialisation de l'équipe2
+        // Initialisation de l'équipe2
         // Boucle qui créer 3 personnages dans l'équipe 2
-        for (int i = 0,n=4; i < 3; i++, n--) 
-	    {
+        for (int i = 0,n=4; i < 3; i++, n--){
         	equipe2[i] = new Player(gc, colorMap[i], w/n, 20, "top");
         	equipe2[i].display();
 	    }
@@ -75,10 +69,8 @@ public class Field extends Canvas {
 	     *   
 	     */
 	    this.setOnKeyPressed(
-	    		new EventHandler<KeyEvent>()
-	    	    {
-	    	        public void handle(KeyEvent e)
-	    	        {
+	    		new EventHandler<KeyEvent>(){
+	    	        public void handle(KeyEvent e){
 	    	            String code = e.getCode().toString();
 	    	            // only add once... prevent duplicates
 	    	            if ( !input.contains(code) )
@@ -92,10 +84,8 @@ public class Field extends Canvas {
 	     *   
 	     */
 	    this.setOnKeyReleased(
-	    	    new EventHandler<KeyEvent>()
-	    	    {
-	    	        public void handle(KeyEvent e)
-	    	        {
+	    	    new EventHandler<KeyEvent>(){
+	    	        public void handle(KeyEvent e){
 	    	            String code = e.getCode().toString();
 	    	            input.remove( code );
 	    	        }
@@ -109,76 +99,62 @@ public class Field extends Canvas {
 	     * soit environ 60 fois par seconde.
 	     * 
 	     */
-	    new AnimationTimer() 
-	    {
-	        public void handle(long currentNanoTime)
-	        {	 
+	    new AnimationTimer(){
+	        public void handle(long currentNanoTime){	 
 	            // On nettoie le canvas a chaque frame
 	            gc.setFill( Color.LIGHTGRAY);
 	            gc.fillRect(0, 0, width, height);
 	        	
 	            // Deplacement et affichage des joueurs
 	            
-	            // Pour les joueurs contrôlés par la personne
-	        	//for (int i = 0; i < 2; i++) 
-	            for (int i=2;i<3;i++) //pour le moment un seul personnage est contrôlé par le joueur
-	    	    {
-	        		if (input.contains("LEFT"))
-	        		{
+	            // Pour les joueurs contrôlés par la personne, un seul joueur est contrôlé par un humain
+	        	//Equipe 1
+	            for (int i=0;i<1;i++){
+	        		if (input.contains("LEFT")){
 	        			equipe1[i].moveLeft();
 	        		} 
-	        		if (input.contains("RIGHT")) 
-	        		{
+	        		if (input.contains("RIGHT")){
 	        			equipe1[i].moveRight();	        			
 	        		}
 					if (input.contains("ENTER")){
 	        			equipe1[i].shoot();
 					}
-	        		if (input.contains("UP"))
-	        		{
+	        		if (input.contains("UP")){
 	        			equipe1[i].turnLeft();
 	        		} 
-	        		if (input.contains("DOWN")) 
-	        		{
+	        		if (input.contains("DOWN")){
 	        			equipe1[i].turnRight();	        			
 	        		}
 	        		
 	        		equipe1[i].display();
 	    	    }
-	        	
-	        	// Pour les joueurs contrôlés par le pc
-/*
-	        	equipe1[2].moveLeft();
-	        	equipe1[2].display();
-	        		*/
-	        	// Pour les joueurs contrôlés par la personne
-				//for (int i = 0; i < 2; i++)
-	        	for (int i=2;i<3;i++) //pour le moment un seul personnage est contrôlé par le joueur
-	    	    {
-	
-	        		if (input.contains("Q"))
-	        		{
+	            //Equipe 2
+	            for (int i=0;i<1;i++){
+	        		if (input.contains("Q")){
 	        			equipe2[i].moveLeft();
 	        		} 
-	        		if (input.contains("D")) 
-	        		{
+	        		if (input.contains("D")){
 	        			equipe2[i].moveRight();	        			
 	        		}
-	        		if (input.contains("Z"))
-	        		{
+	        		if (input.contains("Z")){
 	        			equipe2[i].turnLeft();
 	        		} 
-	        		if (input.contains("S")) 
-	        		{
+	        		if (input.contains("S")){
 	        			equipe2[i].turnRight();	        			
 	        		}
 	        		if (input.contains("SPACE")){
 	        			equipe2[i].shoot();
 					}
 
-	        		
 	        		equipe2[i].display();
 	    	    }
+	        	
+	        	// Pour les joueurs contrôlés par le pc
+	            /*
+	        	equipe1[2].moveLeft();
+	        	equipe1[2].display();
+	        		*/
+	        	
 	    	}
 	     }.start(); // On lance la boucle de rafraichissement 
 	     
@@ -186,12 +162,10 @@ public class Field extends Canvas {
 
 	public Player[] getEquipe1() {
 		return equipe1;
-
 	}
 	
 	public Player[] getEquipe2() {
 		return equipe2;
-
 	}
 	
 }

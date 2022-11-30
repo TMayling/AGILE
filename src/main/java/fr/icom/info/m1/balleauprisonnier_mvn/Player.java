@@ -12,8 +12,7 @@ import javafx.util.Duration;
  * Classe gerant un joueur
  *
  */
-public class Player 
-{
+public class Player{
 	  double x;       // position horizontale du joueur
 	  final double y; 	  // position verticale du joueur
 	  double angle = 90; // rotation du joueur, devrait toujour être en 0 et 180
@@ -73,15 +72,14 @@ public class Player
 	  /**
 	   *  Affichage du joueur
 	   */
-	  void display()
-	  {
+	  void display(){
 		  graphicsContext.save(); // saves the current state on stack, including the current transform
 	      rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
 		  graphicsContext.drawImage(directionArrow, x, y);
 		  graphicsContext.restore(); // back to original state (before rotation)
 	  }
 
-	  private void rotate(GraphicsContext gc, double angle, double px, double py) {
+	  private void rotate(GraphicsContext gc, double angle, double px, double py){
 		  Rotate r = new Rotate(angle, px, py);
 		  gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
 	  }
@@ -90,10 +88,8 @@ public class Player
 	   *  Deplacement du joueur vers la gauche, on cantonne le joueur sur le plateau de jeu
 	   */
 	 
-	  void moveLeft() 
-	  {	    
-	    if (x > 10 && x < 520) 
-	    {
+	  void moveLeft(){	    
+	    if (x > 10 && x < 520){
 			spriteAnimate();
 		    x -= step;
 	    }
@@ -102,10 +98,8 @@ public class Player
 	  /**
 	   *  Deplacement du joueur vers la droite
 	   */
-	  void moveRight() 
-	  {
-	    if (x > 10 && x < 520) 
-	    {
+	  void moveRight(){
+	    if (x > 10 && x < 520){
 			spriteAnimate();
 		    x += step;
 	    }
@@ -115,29 +109,24 @@ public class Player
 	  /**
 	   *  Rotation du joueur vers la gauche
 	   */
-	  void turnLeft() 
-	  {
-	    if (angle > 0 && angle < 180) 
-	    {
+	  void turnLeft(){
+	    if (angle > 0 && angle < 180){
 	    	angle += 1;
 	    }
-	    else {
+	    else{
 	    	angle += 1;
 	    }
-
 	  }
 
 	  
 	  /**
 	   *  Rotation du joueur vers la droite
 	   */
-	  void turnRight() 
-	  {
-	    if (angle > 0 && angle < 180) 
-	    {
+	  void turnRight(){
+	    if (angle > 0 && angle < 180){
 	    	angle -=1;
 	    }
-	    else {
+	    else{
 	    	angle -= 1;
 	    }
 	  }
@@ -150,8 +139,7 @@ public class Player
 	  /**
 	   *  Deplacement en mode boost
 	   */
-	  void boost() 
-	  {
+	  void boost(){
 	    x += step*2;
 		  spriteAnimate();
 	  }
@@ -162,5 +150,4 @@ public class Player
 		  sprite.setX(x);
 		  sprite.setY(y);
 	  }
-	  
 }
